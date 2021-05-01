@@ -7,7 +7,7 @@
 		<properties>
 			<!-- Configuring The Database Connection Details -->
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432:localhost}:5432/postgres" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password" value="postgres" />
 
