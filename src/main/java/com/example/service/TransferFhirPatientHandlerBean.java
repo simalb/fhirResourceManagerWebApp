@@ -1,27 +1,27 @@
 package com.example.service;
 
-/*import frm.bean.persistence.PatientPersistenceManager;
-import frm.bean.persistence.entity.PatientEntity;
-import frm.bean.persistence.utils.ConverterUtility;
-import frm.bean.http.connection.HttpOperationHandler;
-import frm.bean.utils.json.JsonManager;
-
-import frm.bean.utils.json.objects.Patient;
-import frm.bean.http.connection.ResultHandler;
-import frm.bean.utils.exception.HttpURLConnectionFailException;*/
-
+import com.example.persistence.PatientPersistenceManager;
+import com.example.persistence.PatientPersistenceManagerEJB;
+import com.example.persistence.entity.PatientEntity;
+import com.example.persistence.utils.ConverterUtility;
 import com.example.service.http.connection.HttpOperationHandler;
 import com.example.service.http.connection.ResultHandler;
 import com.example.service.utils.exceptions.HttpURLConnectionFailException;
+import com.example.service.utils.json.JsonManager;
+import com.example.service.utils.json.object.Patient;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 @Stateless
 @Startup
-public class TransferFhirPatientHandlerEJB implements TransferFhirPatientHandler {
+public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandler {
+
+    //@Inject
+    //PatientPersistenceManager patientPersistenceManagerEJB;
 
     @PostConstruct
     public void init() {
@@ -43,7 +43,7 @@ public class TransferFhirPatientHandlerEJB implements TransferFhirPatientHandler
         try {
             //Read out patient from fhir server
             ResultHandler resultHandler = httpOperationHandler.get(fhirUrl);
-            /*Patient patient = JsonManager.getPatientFromJsonObject(resultHandler.getResultMessage());
+            Patient patient = JsonManager.getPatientFromJsonObject(resultHandler.getResultMessage());
 
             System.out.println("getCompletePatientEntity - patient: " + patient.toString());
             PatientEntity patientEntity = ConverterUtility.getCompletePatientEntity(patient, fhirUrl);
@@ -51,8 +51,8 @@ public class TransferFhirPatientHandlerEJB implements TransferFhirPatientHandler
             //Create a copy in sql table
             // TODO- STILL NOT WORKING
             System.out.println("\n *** STILL NOT WORKING - persist patient on DB *** \n");
-            PatientPersistenceManager patientPersistenceManager = new PatientPersistenceManager();
-            patientPersistenceManager.createPatient(patientEntity);*/
+            PatientPersistenceManagerEJB patientPersistenceManagerEJB = new PatientPersistenceManagerEJB();
+            patientPersistenceManagerEJB.createPatient(patientEntity);
 
             return true;
 
@@ -68,14 +68,13 @@ public class TransferFhirPatientHandlerEJB implements TransferFhirPatientHandler
 
         //Get copied patient from sql table - NOT WORKING
         // TODO- STILL NOT WORKING
-        /*PatientPersistenceManager patientPersistenceManager = new PatientPersistenceManager();
+        PatientPersistenceManagerEJB patientPersistenceManagerEJB = new PatientPersistenceManagerEJB();
 
         //Convert to Json Object
-        String jsonObjectPatient = JsonManager.getJsonObjectFromPatientEntity(patientPersistenceManager.getPatientFromDbTableByUrl(fhirUrl));
+        String jsonObjectPatient = JsonManager.getJsonObjectFromPatientEntity(patientPersistenceManagerEJB.getPatientFromDbTableByUrl(fhirUrl));
         System.out.println("transferedPatient: " + jsonObjectPatient);
 
-        return jsonObjectPatient;*/
-        return "SIMONA";
+        return jsonObjectPatient;
     }
 
     @Override

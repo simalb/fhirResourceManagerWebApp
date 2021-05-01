@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>JSP - FhirResourceTransfer</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Hello by FhirResourceTransfer!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="hello-servlet">Hello Servlet FhirResourceTransfer</a>
 </body>
 </html>
