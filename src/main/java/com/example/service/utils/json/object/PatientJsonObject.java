@@ -9,7 +9,8 @@ import java.util.UUID;
 @Data
 public class PatientJsonObject {
 
-    private UUID internalId;
+    //private UUID internalId;
+    private int internalId;
 
     private String url;
 

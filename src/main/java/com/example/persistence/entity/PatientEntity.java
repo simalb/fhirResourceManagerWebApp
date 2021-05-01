@@ -9,23 +9,35 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "Patients")
+@Table(name = "patients")
 public class PatientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID internalId;
+    //private UUID internalId;
+    private int internalId;
 
-    @Column(name = "url", nullable = false, unique = true)
+    @Transient
+    //@Column(name = "url", nullable = false, unique = true)
     private String url;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Transient
+    //@Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
     private String family;
+
+    @Transient
     private List<String> given = null;
+
+    @Transient
     private String prefix = "";
+    @Transient
     private String suffix = "";
+
     private String gender;
+
+    @Transient
     private String birthDate;
+
 }

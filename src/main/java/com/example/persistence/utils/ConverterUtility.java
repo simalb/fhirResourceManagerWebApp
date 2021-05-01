@@ -40,6 +40,7 @@ public class ConverterUtility {
 
     public static PatientJsonObject convertPatientEntityToPatientJsonObject(PatientEntity patientEntity) {
         PatientJsonObject patientJsonObject = new PatientJsonObject();
+        //patientJsonObject.setInternalId(patientEntity.getInternalId());
         patientJsonObject.setInternalId(patientEntity.getInternalId());
         patientJsonObject.setUrl(patientEntity.getUrl());
         patientJsonObject.setCreationDate(patientEntity.getCreationDate());

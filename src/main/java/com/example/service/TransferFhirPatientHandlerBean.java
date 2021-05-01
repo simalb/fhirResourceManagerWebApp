@@ -51,8 +51,8 @@ public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandle
             //Create a copy in sql table
             // TODO- STILL NOT WORKING
             System.out.println("\n *** STILL NOT WORKING - persist patient on DB *** \n");
-            PatientPersistenceManagerEJB patientPersistenceManagerEJB = new PatientPersistenceManagerEJB();
-            patientPersistenceManagerEJB.createPatient(patientEntity);
+            //PatientPersistenceManagerEJB patientPersistenceManagerEJB = new PatientPersistenceManagerEJB();
+            //patientPersistenceManagerEJB.createPatient(patientEntity);
 
             return true;
 
@@ -71,10 +71,11 @@ public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandle
         PatientPersistenceManagerEJB patientPersistenceManagerEJB = new PatientPersistenceManagerEJB();
 
         //Convert to Json Object
-        String jsonObjectPatient = JsonManager.getJsonObjectFromPatientEntity(patientPersistenceManagerEJB.getPatientFromDbTableByUrl(fhirUrl));
-        System.out.println("transferedPatient: " + jsonObjectPatient);
+        //String jsonObjectPatient = JsonManager.getJsonObjectFromPatientEntity(patientPersistenceManagerEJB.getPatientFromDbTableByUrl(fhirUrl));
+        //System.out.println("transferedPatient: " + jsonObjectPatient);
 
-        return jsonObjectPatient;
+        //return jsonObjectPatient;
+        return "simona";
     }
 
     @Override

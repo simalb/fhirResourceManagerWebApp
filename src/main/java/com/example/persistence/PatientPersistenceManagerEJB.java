@@ -13,15 +13,17 @@ import java.util.Arrays;
 
 //TODO - understand wy it does not work
 @Singleton
-//@Startup
+@Startup
 //@Local
 public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
 
-    //@PersistenceContext
-    //private static EntityManager em;
+    private static final String PERSISTENCE_UNIT_NAME = "fhirResourceManagerWebApp";
 
-    //@PersistenceUnit
-    //private EntityManagerFactory emf;
+    /*@PersistenceContext
+    private static EntityManager em;
+
+    @PersistenceUnit
+    private EntityManagerFactory emf;*/
 
      @PostConstruct
     public void init() {
@@ -32,6 +34,22 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
         //h2 native query to show tables and columns
         //runNativeQuery("SHOW TABLES");
         //runNativeQuery("SHOW COLUMNS from Patients");
+
+         /*EntityManagerFactory emFactoryObj = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+
+         EntityManager entityMgr = emFactoryObj.createEntityManager();
+         entityMgr.getTransaction().begin();
+
+         PatientEntity myPatient = new PatientEntity();
+         //myPatient.setInternalId(101);
+         myPatient.setFamily("Harry Potter");
+         myPatient.setGender("male");
+         entityMgr.persist(myPatient);
+
+         entityMgr.getTransaction().commit();
+
+         entityMgr.clear();*/
+         System.out.println("Record Successfully Inserted In The Database");
     }
 
     @PreDestroy
@@ -41,7 +59,7 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
         System.out.println("*** Ending  PatientTransferManager execution.");
     }
 
-    public void createPatient(PatientEntity patient)  {
+    /*public void createPatient(PatientEntity patient)  {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("PatientTransferService");
         EntityManager em = factory.createEntityManager();
 
@@ -92,5 +110,5 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
             System.out.println(Arrays.toString((Object[]) o));
         }
         em.close();
-    }
+    }*/
 }
