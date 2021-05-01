@@ -15,7 +15,7 @@ import java.util.Arrays;
 @Singleton
 //@Startup
 //@Local
-public class PatientPersistenceManagerEJB implements PatientPersistenceManager{
+public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
 
     //@PersistenceContext
     //private static EntityManager em;
