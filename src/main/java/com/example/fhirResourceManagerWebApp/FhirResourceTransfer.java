@@ -1,6 +1,6 @@
 package com.example.fhirResourceManagerWebApp;
 
-import com.example.service.TransferFhirPatientHandlerBean;
+import com.example.service.TransferFhirPatientHandler;
 
 import javax.inject.Inject;
 
@@ -14,13 +14,7 @@ public class FhirResourceTransfer {
 
 
     @Inject
-    TransferFhirPatientHandlerBean transferFhirPatientHandlerBean;
-
-    /*@GET
-    public String doGet() {
-        return "partita!";
-
-    }*/
+    TransferFhirPatientHandler transferFhirPatientHandlerEJB;
 
     @GET
     public String doGet() {
@@ -33,7 +27,7 @@ public class FhirResourceTransfer {
     @Produces(MediaType.APPLICATION_JSON)
     public String getFhirResource(@PathParam("id") String id) {
         System.out.println("FhirResourceTransfer - patient id to find in the fhir test server: " + id);
-        if(transferFhirPatientHandlerBean.transferFhirPatient(TEST_URI + id)) {
+        if(transferFhirPatientHandlerEJB.transferFhirPatient(TEST_URI + id)) {
             return "Patient: " + id +" transferred on local DB";
         }
         return "Patient: " + id + " transfer failed";
@@ -44,7 +38,7 @@ public class FhirResourceTransfer {
     public String doPost(String requestBody) {
         System.out.println("FhirResourceTransfer - doPost");
 
-        return transferFhirPatientHandlerBean.createPatientOnPublicFhirServer(requestBody);
+        return transferFhirPatientHandlerEJB.createPatientOnPublicFhirServer(requestBody);
     }
 
 }

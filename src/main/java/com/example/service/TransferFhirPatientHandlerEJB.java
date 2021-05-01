@@ -19,11 +19,11 @@ import javax.annotation.PreDestroy;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
 
-//@Stateless
-//@Startup
-public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandler {
+@Stateless
+@Startup
+public class TransferFhirPatientHandlerEJB implements TransferFhirPatientHandler {
 
-    /*@PostConstruct
+    @PostConstruct
     public void init() {
         System.out.println("*** Starting fhirResourceManager execution.");
 
@@ -32,7 +32,7 @@ public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandle
     @PreDestroy
     public void stop() {
         System.out.println("*** Ending  fhirResourceManager execution.");
-    }*/
+    }
 
     @Override
     //JAVA TEST - 1 READ AND TRANSFER A FHIR RESOURCE
