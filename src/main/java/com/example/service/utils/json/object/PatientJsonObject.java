@@ -2,6 +2,7 @@ package com.example.service.utils.json.object;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -14,10 +15,10 @@ public class PatientJsonObject {
 
     private String url;
 
-    //private Date creationDate;
+    private Date creationDate;
 
     private String family;
-    //private List<String> given = null;
+    private List<String> given = new ArrayList<>();
     private String prefix = "";
     private String suffix = "";
     private String gender;

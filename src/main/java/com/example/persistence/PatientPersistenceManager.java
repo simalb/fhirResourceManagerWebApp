@@ -7,7 +7,8 @@ import javax.validation.constraints.NotNull;
 public interface PatientPersistenceManager {
 
     void createPatient(PatientEntity patient);
+
     PatientEntity getPatientFromDbTableByUrl(@NotNull final String url);
-    void printTabels();
-    void runNativeQuery(String s);
+
+    void printPatientEntityList();
 }

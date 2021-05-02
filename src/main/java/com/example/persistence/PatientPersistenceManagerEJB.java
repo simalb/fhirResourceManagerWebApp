@@ -8,26 +8,20 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 import java.util.List;
 
 
-//TODO - understand wy it does not work
 @Singleton
 @Startup
 //@Local
 public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
 
-    //private static final String PERSISTENCE_UNIT_NAME = "fhirResourceManagerWebApp";
 
     public PatientPersistenceManagerEJB() {
     }
 
-    /*@PersistenceContext
-    private static EntityManager em;
-
-    @PersistenceUnit
-    private EntityManagerFactory emf;*/
+    //@PersistenceContext
+    //private static EntityManager em;
 
     //@PersistenceUnit(name="fhirResourceManagerWebApp")
     //EntityManagerFactory factory;
@@ -42,20 +36,13 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
         EntityManager em = factory.createEntityManager();
 
         // read the existing entries and write to console
-        Query q = em.createQuery("select p from PatientEntity p");
-        List<PatientEntity> patientList = q.getResultList();
-        for (PatientEntity patientEntity : patientList) {
-            System.out.println(patientEntity);
-        }
-        System.out.println("Size: " + patientList.size());
+        printPatientEntityList(em);
 
         em.close();
     }
 
     @PreDestroy
     public void stop() {
-        //em.close();
-
         System.out.println("*** Ending  PatientTransferManager execution.");
     }
 
@@ -90,22 +77,22 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
             return null;
         }
     }
-    public void printTabels()  {
 
-        //h2 native query to show tables and columns
-        runNativeQuery("SHOW TABLES");
-        runNativeQuery("SHOW COLUMNS from Patients");
+    public void printPatientEntityList() {
+        EntityManager em = factory.createEntityManager();
+        printPatientEntityList(em);
+        em.close();
     }
 
-    public void runNativeQuery(String s) {
-        System.out.println("--------\n" + s);
+    private void printPatientEntityList(EntityManager em) {
+        Query q = em.createQuery("select p from PatientEntity p");
 
-        EntityManager em = factory.createEntityManager();
-
-        Query query = em.createNativeQuery(s);
-        for (Object o : query.getResultList()) {
-            System.out.println(Arrays.toString((Object[]) o));
+        System.out.println("*** Print patients in local DB:");
+        List<PatientEntity> patientList = q.getResultList();
+        for (PatientEntity patientEntity : patientList) {
+            System.out.println("*** " + patientEntity.toString());
         }
-        em.close();
+        System.out.println("*** Patients present in table: " + patientList.size());
+
     }
 }
