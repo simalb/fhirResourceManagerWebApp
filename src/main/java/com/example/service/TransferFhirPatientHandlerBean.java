@@ -20,8 +20,8 @@ import javax.inject.Inject;
 @Startup
 public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandler {
 
-    //@Inject
-    //PatientPersistenceManager patientPersistenceManagerEJB;
+    @Inject
+    PatientPersistenceManager patientPersistenceManagerEJB;
 
     @PostConstruct
     public void init() {
@@ -43,6 +43,12 @@ public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandle
         try {
             //Read out patient from fhir server
             ResultHandler resultHandler = httpOperationHandler.get(fhirUrl);
+
+            if(!resultHandler.isResultOk()) {
+                System.out.println("getCompletePatientEntity - failure");
+                return false;
+            }
+
             Patient patient = JsonManager.getPatientFromJsonObject(resultHandler.getResultMessage());
 
             System.out.println("getCompletePatientEntity - patient: " + patient.toString());
@@ -51,8 +57,7 @@ public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandle
             //Create a copy in sql table
             // TODO- STILL NOT WORKING
             System.out.println("\n *** STILL NOT WORKING - persist patient on DB *** \n");
-            //PatientPersistenceManagerEJB patientPersistenceManagerEJB = new PatientPersistenceManagerEJB();
-            //patientPersistenceManagerEJB.createPatient(patientEntity);
+            patientPersistenceManagerEJB.createPatient(patientEntity);
 
             return true;
 
@@ -66,16 +71,11 @@ public class TransferFhirPatientHandlerBean implements TransferFhirPatientHandle
     //JAVA TEST - 2 GET THE COPY
     public String transferredPatient(String fhirUrl) {
 
-        //Get copied patient from sql table - NOT WORKING
-        // TODO- STILL NOT WORKING
-        PatientPersistenceManagerEJB patientPersistenceManagerEJB = new PatientPersistenceManagerEJB();
-
         //Convert to Json Object
-        //String jsonObjectPatient = JsonManager.getJsonObjectFromPatientEntity(patientPersistenceManagerEJB.getPatientFromDbTableByUrl(fhirUrl));
-        //System.out.println("transferedPatient: " + jsonObjectPatient);
+        String jsonObjectPatient = JsonManager.getJsonObjectFromPatientEntity(patientPersistenceManagerEJB.getPatientFromDbTableByUrl(fhirUrl));
+        System.out.println("transferedPatient: " + jsonObjectPatient);
 
-        //return jsonObjectPatient;
-        return "simona";
+        return jsonObjectPatient;
     }
 
     @Override

@@ -14,10 +14,10 @@ public class PatientJsonObject {
 
     private String url;
 
-    private Date creationDate;
+    //private Date creationDate;
 
     private String family;
-    private List<String> given = null;
+    //private List<String> given = null;
     private String prefix = "";
     private String suffix = "";
     private String gender;

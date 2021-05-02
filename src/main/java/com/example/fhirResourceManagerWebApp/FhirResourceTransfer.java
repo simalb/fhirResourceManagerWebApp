@@ -27,7 +27,7 @@ public class FhirResourceTransfer {
     @Produces(MediaType.APPLICATION_JSON)
     public String getFhirResource(@PathParam("id") String id) {
         System.out.println("FhirResourceTransfer - patient id to find in the fhir test server: " + id);
-        if(transferFhirPatientHandlerEJB.transferFhirPatient(TEST_URI + id)) {
+        if(transferFhirPatientHandlerEJB.transferFhirPatient(TEST_URI + "/" + id)) {
             return "Patient: " + id +" transferred on local DB";
         }
         return "Patient: " + id + " transfer failed";

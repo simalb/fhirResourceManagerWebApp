@@ -22,7 +22,7 @@ public class ConverterUtility {
     public static PatientEntity convertPatientToPatientEntity(Patient patient) {
         PatientEntity patientEntity = new PatientEntity();
         patientEntity.setFamily(patient.getName().get(0).getFamily());
-        patientEntity.setGiven(patient.getName().get(0).getGiven());
+        //patientEntity.setGiven(patient.getName().get(0).getGiven());
 
         if(patient.getName().get(0).getPrefix() != null) {
             patientEntity.setPrefix(patient.getName().get(0).getPrefix());
@@ -40,12 +40,11 @@ public class ConverterUtility {
 
     public static PatientJsonObject convertPatientEntityToPatientJsonObject(PatientEntity patientEntity) {
         PatientJsonObject patientJsonObject = new PatientJsonObject();
-        //patientJsonObject.setInternalId(patientEntity.getInternalId());
         patientJsonObject.setInternalId(patientEntity.getInternalId());
         patientJsonObject.setUrl(patientEntity.getUrl());
-        patientJsonObject.setCreationDate(patientEntity.getCreationDate());
+        //patientJsonObject.setCreationDate(patientEntity.getCreationDate());
         patientJsonObject.setFamily(patientEntity.getFamily());
-        patientJsonObject.setGiven(patientEntity.getGiven());
+        //patientJsonObject.setGiven(patientEntity.getGiven());
         patientJsonObject.setPrefix(patientEntity.getPrefix());
         patientJsonObject.setSuffix(patientEntity.getSuffix());
         patientJsonObject.setGender(patientEntity.getGender());

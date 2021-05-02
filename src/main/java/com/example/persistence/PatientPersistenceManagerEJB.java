@@ -29,39 +29,27 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
     @PersistenceUnit
     private EntityManagerFactory emf;*/
 
+    //@PersistenceUnit(name="fhirResourceManagerWebApp")
+    //EntityManagerFactory factory;
+
+    private EntityManagerFactory factory;
+
     @PostConstruct
     public void init() {
         System.out.println("*** Starting  PatientTransferManager execution.");
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("fhirResourceManagerWebApp");
+
+        factory = Persistence.createEntityManagerFactory("fhirResourceManagerWebApp");
         EntityManager em = factory.createEntityManager();
 
-         // read the existing entries and write to console
-         /*Query q = em.createQuery("select p from PatientEntity p");
-         List<PatientEntity> patientList = q.getResultList();
-         for (PatientEntity patientEntity : patientList) {
-             System.out.println(patientEntity);
-         }
-         System.out.println("Size: " + patientList.size());*/
+        // read the existing entries and write to console
+        Query q = em.createQuery("select p from PatientEntity p");
+        List<PatientEntity> patientList = q.getResultList();
+        for (PatientEntity patientEntity : patientList) {
+            System.out.println(patientEntity);
+        }
+        System.out.println("Size: " + patientList.size());
 
-        //h2 native query to show tables and columns
-        //runNativeQuery("SHOW TABLES");
-        //runNativeQuery("SHOW COLUMNS from Patients");
-
-         /*EntityManagerFactory emFactoryObj = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-
-         EntityManager entityMgr = emFactoryObj.createEntityManager();
-         entityMgr.getTransaction().begin();
-
-         PatientEntity myPatient = new PatientEntity();
-         //myPatient.setInternalId(101);
-         myPatient.setFamily("Harry Potter");
-         myPatient.setGender("male");
-         entityMgr.persist(myPatient);
-
-         entityMgr.getTransaction().commit();
-
-         entityMgr.clear();*/
-         System.out.println("Record Successfully Inserted In The Database");
+        em.close();
     }
 
     @PreDestroy
@@ -71,8 +59,7 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
         System.out.println("*** Ending  PatientTransferManager execution.");
     }
 
-    /*public void createPatient(PatientEntity patient)  {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PatientTransferService");
+    public void createPatient(PatientEntity patient)  {
         EntityManager em = factory.createEntityManager();
 
         em.getTransaction().begin();
@@ -87,7 +74,6 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
     public PatientEntity getPatientFromDbTableByUrl(@NotNull final String url) {
         System.out.println("Requested patient from DB: " + url);
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PatientTransferService");
         EntityManager em = factory.createEntityManager();
 
         TypedQuery<PatientEntity> q = em.createQuery("select p from PatientEntity p where p.url=:url", PatientEntity.class);
@@ -111,10 +97,9 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
         runNativeQuery("SHOW COLUMNS from Patients");
     }
 
-    private void runNativeQuery(String s) {
+    public void runNativeQuery(String s) {
         System.out.println("--------\n" + s);
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PatientTransferService");
         EntityManager em = factory.createEntityManager();
 
         Query query = em.createNativeQuery(s);
@@ -122,5 +107,5 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
             System.out.println(Arrays.toString((Object[]) o));
         }
         em.close();
-    }*/
+    }
 }

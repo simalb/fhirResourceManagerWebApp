@@ -20,16 +20,14 @@ public class PatientEntity {
     @Column(name = "url", nullable = false, unique = true)
     private String url;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
+    //@Temporal(TemporalType.TIMESTAMP)
+    //private Date creationDate;
 
     private String family;
-    private List<String> given = null;
+    //private List<String> given = null;
     private String prefix = "";
     private String suffix = "";
     private String gender;
 
-    @Transient
     private String birthDate;
-
 }
