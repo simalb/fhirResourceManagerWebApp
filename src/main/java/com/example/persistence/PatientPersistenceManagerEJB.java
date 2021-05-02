@@ -9,6 +9,7 @@ import javax.ejb.Startup;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
+import java.util.List;
 
 
 //TODO - understand wy it does not work
@@ -17,7 +18,10 @@ import java.util.Arrays;
 //@Local
 public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
 
-    private static final String PERSISTENCE_UNIT_NAME = "fhirResourceManagerWebApp";
+    //private static final String PERSISTENCE_UNIT_NAME = "fhirResourceManagerWebApp";
+
+    public PatientPersistenceManagerEJB() {
+    }
 
     /*@PersistenceContext
     private static EntityManager em;
@@ -25,11 +29,19 @@ public class PatientPersistenceManagerEJB implements PatientPersistenceManager {
     @PersistenceUnit
     private EntityManagerFactory emf;*/
 
-     @PostConstruct
+    @PostConstruct
     public void init() {
         System.out.println("*** Starting  PatientTransferManager execution.");
-        //EntityManagerFactory factory = Persistence.createEntityManagerFactory("PatientTransferService");
-        //em = factory.createEntityManager();
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("fhirResourceManagerWebApp");
+        EntityManager em = factory.createEntityManager();
+
+         // read the existing entries and write to console
+         /*Query q = em.createQuery("select p from PatientEntity p");
+         List<PatientEntity> patientList = q.getResultList();
+         for (PatientEntity patientEntity : patientList) {
+             System.out.println(patientEntity);
+         }
+         System.out.println("Size: " + patientList.size());*/
 
         //h2 native query to show tables and columns
         //runNativeQuery("SHOW TABLES");

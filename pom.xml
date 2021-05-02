@@ -110,6 +110,13 @@
             <version>5.2.11.Final</version>
         </dependency-->
 
+        <!--  use the PostgreSQL 9.3.5 database -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.3-1102-jdbc41</version>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
