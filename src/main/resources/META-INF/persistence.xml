@@ -5,24 +5,30 @@
 	<persistence-unit name="fhirResourceManagerWebApp" transaction-type="RESOURCE_LOCAL">
 		<!--.provider>org.hibernate.ejb.HibernatePersistence</provider-->
 		<class>com.example.persistence.entity.PatientEntity</class>
+		<!--class>com.example.persistence.entity.Farmer</class-->
 		<properties>
 
 			<!-- Configuring The Database Connection Details -->
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
+
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password" value="postgres" />
 
 
 			<!-- EclipseLink should create the database schema automatically -->
-			<!--property name="eclipselink.ddl-generation" value="create-tables" />
-			<property name="eclipselink.ddl-generation.output-mode" value="database" /-->
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode" value="database" />
 
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/> <!-- DB Dialect -->
-			<property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
+			<!-- DB Dialect -->
+			<!--property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/-->
+			<!-- create / create-drop / update -->
+			<!--property name="hibernate.hbm2ddl.auto" value="update" /-->
 
-			<property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
-			<property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
+			<!-- Show SQL in console -->
+			<!--property name="hibernate.show_sql" value="true" /-->
+			<!-- Show SQL formatted -->
+			<!--property name="hibernate.format_sql" value="true" /-->
 
 
 
@@ -32,8 +38,10 @@
 			<property name="javax.persistence.schema-generation.create-source"
 					  value="script"/>
 			<property name="javax.persistence.schema-generation.create-script-source"
-					  value="META-INF/sql/create.sql" />
-			<property name="javax.persistence.sql-load-script-source"
+					  value="META-INF/sql/createTest.sql" /-->
+
+
+			<!--property name="javax.persistence.sql-load-script-source"
 					  value="META-INF/sql/data.sql" />
 			<property name="javax.persistence.schema-generation.drop-source"
 					  value="script" />
@@ -43,18 +51,3 @@
 		</properties>
 	</persistence-unit>
 </persistence>
-
-		<!--?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0"
-			 xmlns="http://java.sun.com/xml/ns/persistence"
-			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
-        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-<persistence-unit name="fhirResourceManagerWebApp" transaction-type="JTA">
-	<jta-data-source>jdbc/__default</jta-data-source>
-	<properties>
-		<property name="eclipselink.ddl-generation"
-				  value="drop-and-create-tables"/>
-	</properties>
-</persistence-unit>
-</persistence-->

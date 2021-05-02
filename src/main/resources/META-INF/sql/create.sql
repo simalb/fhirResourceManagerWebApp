@@ -1,12 +1,12 @@
 /* Create Database */
-CREATE DATABASE postgres;
+/*CREATE DATABASE postgres;*/
 
 /* Use The Newly Created Database */
-USE postgres;
+/*USE postgres;*/
 
 /* Creating Table */
-/*CREATE TABLE patients (*/
-CREATE TABLE IF NOT EXISTS patients (
+CREATE TABLE patients (
+/**CREATE TABLE IF NOT EXISTS patients (*/
   internalId INTEGER NOT NULL,
   family VARCHAR(200) NOT NULL,
   gender VARCHAR(120) NOT NULL,

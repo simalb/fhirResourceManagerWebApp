@@ -17,24 +17,16 @@ public class PatientEntity {
     //private UUID internalId;
     private int internalId;
 
-    @Transient
-    //@Column(name = "url", nullable = false, unique = true)
+    @Column(name = "url", nullable = false, unique = true)
     private String url;
 
-    @Transient
-    //@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
     private String family;
-
-    @Transient
     private List<String> given = null;
-
-    @Transient
     private String prefix = "";
-    @Transient
     private String suffix = "";
-
     private String gender;
 
     @Transient
