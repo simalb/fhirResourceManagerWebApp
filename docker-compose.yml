@@ -12,8 +12,8 @@ services:
     ports:
       - 5432:5432
 
-  fhirResourceManagerWebApp:
-    image: fhir-resource-manager-web-app:1.0
-    ports:
-      - 8080:8080
+  #fhirResourceManagerWebApp:
+  #  image: fhir-resource-manager-web-app:1.0
+  #  ports:
+  #    - 8080:8080
 
